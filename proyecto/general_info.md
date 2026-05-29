@@ -82,7 +82,7 @@ Incluir una sección breve al final del informe (antes de las referencias) indic
 
 
 **Ejemplo de Data Availability Statement:**
-> *Los datos utilizados en este trabajo corresponden al dataset público XYZ, disponible en [enlace/DOI]. El código desarrollado para este proyecto está disponible en [github.com/usuario/proyecto](https://github.com) bajo licencia MIT. Este trabajo utilizó Julia v1.10 con los paquetes `DifferentialEquations.jl` {cite}`Rackauckas_Nie_2016` y `Lux.jl`.*
+> *Los datos utilizados en este trabajo corresponden al dataset público XYZ, disponible en [enlace/DOI]. El código desarrollado para este proyecto está disponible en [github.com/usuario/proyecto](https://github.com) bajo licencia MIT. Este trabajo utilizó Julia v1.10 con los paquetes `DifferentialEquations.jl` (REF) y `Lux.jl`.*
 :::
 
 :::{important} Agradecimientos y use de AI
