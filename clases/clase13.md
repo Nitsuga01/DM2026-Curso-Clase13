@@ -16,7 +16,7 @@ title: No13 - Programación Diferencial Pt3
 
 En la [clase 12](clase12.md), se estudió el método de *Automatic Differentiation (AD)* en el caso *Forward*, implementado mediante los números duales. Repasaremos a continuación los conceptos de este caso que reaparecerán en esta clase.
 Para realizar la diferenciación, consideramos la cantidad a diferenciar como el nodo final de un *grafo computacional* cuyas entradas son los $p$ parámetros de nuestro problema.
-```{figure} ../images/grafocomp.png
+```{figure} ../figures/Images for clase13/grafocomp.png
 :width: 300px
 :align: center
 :name: grafo-computacional
@@ -30,7 +30,7 @@ $$\frac{\partial v_m}{\partial v_o}= \sum_{v_o \underset{\Gamma}{\to} v_m} \prod
 ### Costo computacional en la fórmula de Bauer, métodos de evaluación.
 La eficiencia en la evaluación de esta fórmula depende del método utilizado. 
 Por ejemplo, el método *naíf* de evaluación, listar todos los caminos, calcular el producto para cada camino, y luego efectuar la suma, es altamente ineficiente. Esto es porque muchos caminos compartirán secciones, que serán calculadas multiples veces sin reusar resultados. Por ejemplo, en la figura se muestran todas las aristas relevantes para calcular $\partial v_{10}/\partial v_0$. No es difícil notar que habrá más que un camino que une los nodos relevantes y que una buena parte de ellos utilizará la arista que une $v_0$ y $v_1$ y por lo tanto la derivada parcial $\partial v_1/\partial v_0$.
-```{figure} ../images/grafocompderivada.png
+```{figure} ../figures/Images for clase13/grafocompderivada.png
 :width: 300px
 :align: center
 :name: grafo-computacional-derivada
@@ -59,7 +59,7 @@ $$\frac{\partial v_j}{\partial v_i} = \sum_{v_i\to \omega} \frac{\partial v_j}{\
 De las dos derivadas a la derecha, esta vez será $\frac{\partial \omega}{\partial v_i}$ la que es fácil de calcular mientras que para $\frac{\partial v_j}{\partial \omega}$ se tendrá que aplicar la relación recursivamente. A este método también se le da el nombre *back-propagation*.
 
 Reusando el ejemplo anterior, se calcularán primero $\frac{\partial v_{10}}{\partial v_8}$ y $\frac{\partial v_{10}}{\partial v_9}$, luego $\frac{\partial v_{10}}{\partial v_4}$, $\frac{\partial v_{10}}{\partial v_5}$ y $\frac{\partial v_{10}}{\partial v_6}$, luego $\frac{\partial v_{10}}{\partial v_1}$ y $\frac{\partial v_{10}}{\partial v_2}$ y por último $\frac{\partial v_{10}}{\partial v_0}$.
-```{figure} ../images/grafocompbackwards.png
+```{figure} ../figures/Images for clase13/grafocompbackward.png
 :width: 300px
 :align: center
 :name: grafo-computacional-derivada
@@ -71,14 +71,14 @@ Epígrafe de la figura. Se puede referenciar como {numref}`fig-ejemplo`.
 
 
 Una desventaja del modo backwards respecto al modo forwards, es que requiere precomputar los valores asignados a cada nodo para poder evaluar las derivadas. Por ejemplo, para calcular un valor para $\frac{\partial v_{j+1}}{\partial v_{j}}$, uno necesita del valor de $v_j$ o $v_{j+1}$ en que evaluar la derivada. En el modo forward, la obtención de estos valores a partir de los parámetros $v_{-p}, ... ,v_0$ o las variables secundarias que se deducen de estos puede hacerse en el momento. En el caso backwards, todos estos valores deberán conocerse al inicio del computo de la derivada. Esto acarrea un costo adicional en memoria para guardar todas las variables intermedias del programa y un costo en tiempo por el acceso de la memoria.
-```{figure} ../images/casobackward.png
+```{figure} ../figures/Images for clase13/casobackward.png
 :width: 300px
 :align: center
 :name: grafo-computacional-derivada
 
 Epígrafe de la figura. Se puede referenciar como {numref}`fig-ejemplo`.
 ```
-```{figure} ../images/casoforward.png
+```{figure} ../figures/Images for clase13/casoforward.png
 :width: 300px
 :align: center
 :name: grafo-computacional-derivada
@@ -98,7 +98,7 @@ Epígrafe de la figura. Se puede referenciar como {numref}`fig-ejemplo`.
 ### Cuando conviene backwards? VJP vs JVP
 
 Vale la pena pensar en que casos las ventajas de los métodos backwards los vuelven convenientes aún considerando las penalidades en memoria y computacional que estos implican. Para ver un ejemplo de estas ventajas, podemos considerar una versión vectorizada de un grafo computacional:
-```{figure} ../images/grafovectorizado.png
+```{figure} ../figures/Images for clase13/grafovectorizado.png
 :width: 300px
 :align: center
 :name: grafo-computacional-derivada
